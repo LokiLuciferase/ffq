@@ -120,9 +120,12 @@ def parse_sample(soup):
     accession = soup.find('PRIMARY_ID', text=SAMPLE_PARSER).text
     title = soup.find('TITLE').text
     organism = soup.find('SCIENTIFIC_NAME').text
+    attribute_list = [(attr.find('TAG'), attr.find('VALUE'))
+                      for attr in soup.find_all('SAMPLE_ATTRIBUTE')]
     attributes = {
-        attr.find('TAG').text: attr.find('VALUE').text
-        for attr in soup.find_all('SAMPLE_ATTRIBUTE')
+        tag.text: value.text
+        for tag, value in attribute_list
+        if tag is not None and value is not None
     }
     return {
         'accession': accession,
