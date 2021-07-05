@@ -10,7 +10,7 @@ long_description = read('README.md')
 
 setup(
     name='ffq',
-    version='0.0.2',
+    version='0.0.4',
     url='https://github.com/pachterlab/ffq',
     author='Kyung Hoi (Joseph) Min, Sina Booeshaghi',
     author_email='phoenixter96@gmail.com, alisina@caltech.edu',
@@ -22,7 +22,7 @@ setup(
     keywords='',
     python_requires='>=3.6',
     license='MIT',
-    packages=find_packages(),
+    packages=find_packages(exclude=('tests', 'tests.*')),
     zip_safe=False,
     include_package_data=True,
     install_requires=read('requirements.txt').strip().split('\n'),
